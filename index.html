@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html data-ng-app="myApp">
+
+	<head>
+
+		<title>Angular Project 2</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="style.css">
+		<!-- TODO: Use the googleapis versions instead later -->
+		<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+		<script src="1.4.8.angular.min.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+		<script src="3.1.1.jquery.min.js"></script>
+		<script src="app.js"></script>
+
+	</head>
+
+    <!--
+
+    NO NEED FOR NG-INIT BECAUSE OF JSON FILE ALREADY ATTACHED
+
+	NG-MODEL can be used to create a specific key without it being attached to an object. Take a look below.
+
+    -->
+
+	<body>
+		<header ng-controller="HeaderCtrl">
+			<h1 id="title">{{appDetails.title}}</h1>
+			<h3 id="tagline">{{appDetails.tagline}}</h3>
+
+			<form name="theform">
+				What is your name? <input ng-model="name">
+				<p>Enjoy looking around, {{name}}!</p>
+
+				What is your email? <input type="email" name="emailaddress" ng-model="email">
+				<span ng-show="theform.emailaddress.$error.email">Not a valid email address</span>
+
+				<input type="submit">
+			</form>
+		</header>
+
+		<br>
+
+		<section id="guitarSections" ng-controller="GuitarCtrl">
+			<div id="guitarDivs" data-ng-repeat="guitar in guitars">
+				<div id="guitarImgDiv">
+					<img id="guitarImages" ng-src="{{guitar.imageURL}}">
+				</div>
+
+				<div id="text">
+					<h2 class="information">{{guitar.title | uppercase}}</h2>
+					<p class="information">Instrument: {{guitar.instrument}}<p>
+					<p class="information">Color: {{guitar.color}}</p>
+					<p class="information">Price: {{guitar.price}}</p>
+
+					<a href="{{guitar.link}}">Visit Dealer</a>
+				</div>
+			</div>
+
+			<br>
+		
+		</section>
+	</body>
+
+
+</html>
